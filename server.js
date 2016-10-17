@@ -7,7 +7,7 @@ var express 	= require('express'),
 	mongoose 	= require('mongoose'),
 	cors 		= require('cors'),
 	apiRouter 	= require('./config/routes.js'),
-	mongoUri = process.env.MongoURI || 'mongodb://localhost:27017/node-crm-app';
+	mongoUri = process.env.MONGODB_URI || 'mongodb://localhost:27017/node-crm-app';
 
 mongoose.connect(mongoUri);
 
