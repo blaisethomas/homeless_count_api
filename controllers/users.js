@@ -1,6 +1,6 @@
 var User = require('../models/User'),
 	jwt = require('jsonwebtoken'),
-	jwtSecret = "testsecret";
+	jwtSecret = "testSecret";
 
 
 function index(req, res){
@@ -48,8 +48,8 @@ function update(req, res){
 		if(err) res.send(err)
 
 		if(req.body.name) user.name = req.body.name
-		if(req.user.countID) user.countID = req.body.countID
-		if(req.user.zone) user.zone = req.body.zone
+		if(req.body.countID) user.countID = req.body.countID
+		if(req.body.zone)	user.zone = req.body.zone
 		if(req.body.username) user.username = req.body.username
 		if(req.body.password) user.password = req.body.password
 
@@ -92,7 +92,7 @@ function authenticateUser(req, res) {
 					name: user.name,
 					username: user.username
 				}, jwtSecret, {
-testsecret					expiresInMinutes: 1440
+					expiresInMinutes: 1440
 				})
 				// now let's actually give it to them!
 				console.log("logged in")
@@ -105,9 +105,9 @@ testsecret					expiresInMinutes: 1440
 function checkUser(req, res, next){
 	// let's check everywhere for the JWT!
 	var token = req.body.token || req.param('token') || req.headers['x-access-token']
-	// if we find the token, let's use jwtSecret to testsecrettry and decode it.
+	// if we find the token, let's use jwtSecret to try and decode it.
 	if(token){
-		jwt.verify(token, jwtSecret, futestsecretnction(err, decoded){
+		jwt.verify(token, jwtSecret, function(err, decoded){
 			if(err){
 				res.status(403).send({success: false, message: "forbidden, token can't be decoded"})
 			} else {
