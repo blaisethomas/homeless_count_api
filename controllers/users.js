@@ -1,4 +1,4 @@
-var User = require('../models/User'),
+var User = require('../models/user'),
 	jwt = require('jsonwebtoken'),
 	jwtSecret = "testSecret";
 
